@@ -9,6 +9,8 @@ function openEnvelope() {
   document.getElementById("envelope-screen").style.display = "none";
   document.getElementById("content").classList.remove("hidden");
   startConfetti();
+  
+  document.querySelector(".pixel-walker").style.display = "block";
 }
 
 function startConfetti() {
