@@ -162,18 +162,26 @@ canvas {
 .roses {
   position: absolute;
   top: 50%;
-  font-size: 28px;
-  animation: rosePop 2s ease forwards;
+  z-index: 5;
+}
+
+.roses img {
+  width: 220px;
+  max-width: 80vw;
+  animation: rosePop 1.4s ease forwards;
 }
 
 @keyframes rosePop {
   0% {
-    transform: translateY(40px) scale(0);
+    transform: translateY(60px) scale(0.4);
     opacity: 0;
   }
-  100% {
-    transform: translateY(-120px) scale(1);
+  60% {
+    transform: translateY(-90px) scale(1.05);
     opacity: 1;
+  }
+  100% {
+    transform: translateY(-110px) scale(1);
   }
 }
 
