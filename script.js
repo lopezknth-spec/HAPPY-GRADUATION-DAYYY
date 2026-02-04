@@ -9,8 +9,8 @@ function openEnvelope() {
   document.querySelector(".envelope").classList.add("open");
 
   setTimeout(() => {
-    document.querySelector(".roses").classList.remove("hidden");
-  }, 600);
+  document.querySelector(".roses").classList.remove("hidden");
+}, 600);
 
   setTimeout(() => {
     document.getElementById("envelope-screen").style.display = "none";
