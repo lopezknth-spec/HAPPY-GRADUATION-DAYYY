@@ -16,45 +16,62 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
 .envelope {
-  width: 300px;
-  height: 200px;
-  background: #fff;
-  border-radius: 16px;
   position: relative;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  width: 320px;
+  height: 220px;
   cursor: pointer;
-  overflow: hidden;
 }
 
-.envelope-top {
+/* Back of envelope */
+.envelope-back {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70%;
+  background: #fff;
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  z-index: 1;
+}
+
+/* Envelope flap (triangle) */
+.envelope-flap {
   position: absolute;
   top: 0;
   width: 100%;
   height: 50%;
   background: #f3c1b3;
-  clip-path: polygon(0 0, 50% 80%, 100% 0);
-  transition: transform 0.6s ease;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
   transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 3;
 }
 
-.envelope-body {
-  position: relative; /* IMPORTANT */
+/* Envelope content (inside) */
+.envelope-content {
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 70%;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* hides roses before pop */
+  overflow: hidden;
+  z-index: 2;
 }
 
-.envelope.open .envelope-top {
+/* Open animation */
+.envelope.open .envelope-flap {
   transform: rotateX(180deg);
+}
+
+.tap-text {
+  position: absolute;
+  bottom: -35px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.7;
 }
 
 .roses {
@@ -84,13 +101,6 @@ body {
     transform: translate(-50%, -130px) scale(1);
   }
 }
-
-
-.tap-text {
-  font-size: 14px;
-  opacity: 0.7;
-}
-
 
 /* Hide */
 .hidden {
