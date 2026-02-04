@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Georgia', serif;
+}
+
+body {
+  margin: 0;
+  background: #fff7f0;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Envelope Screen */
+#envelope-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope {
+  cursor: pointer;
+}
+
+.envelope-front {
+  font-size: 80px;
+  transition: transform 0.4s;
+}
+
+.envelope:hover .envelope-front {
+  transform: scale(1.1);
+}
+
+.tap-text {
+  margin-top: 10px;
+  color: #a86c4f;
+}
+
+/* Hide */
+.hidden {
+  display: none;
+}
+
+/* Main Content */
+.hero {
+  margin-top: 60px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.hero h2 {
+  font-size: 24px;
+  color: #a86c4f;
+}
+
+/* Photo */
+.photo-section {
+  margin: 40px auto;
+}
+
+.photo-section img {
+  width: 280px;
+  max-width: 90%;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Message */
+.message {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Footer */
+footer {
+  margin: 50px 0 30px;
+  color: #a86c4f;
+}
+
+/* Confetti */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
