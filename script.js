@@ -11,6 +11,8 @@ function openEnvelope() {
   startConfetti();
   
   document.querySelector(".pixel-walker").style.display = "block";
+
+  startMythicalMusic();
 }
 
 function startConfetti() {
@@ -41,3 +43,52 @@ window.onresize = () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 };
+
+let audioCtx;
+let isMusicPlaying = false;
+
+function startMythicalMusic() {
+  if (isMusicPlaying) return;
+  isMusicPlaying = true;
+
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  function playTone(freq, startTime, duration) {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = "sine"; // soft, dreamy
+    osc.frequency.value = freq;
+
+    gain.gain.setValueAtTime(0.0001, startTime);
+    gain.gain.exponentialRampToValueAtTime(0.08, startTime + 1);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(startTime);
+    osc.stop(startTime + duration);
+  }
+
+  function playChord(baseFreq) {
+    const now = audioCtx.currentTime;
+    playTone(baseFreq, now, 6);
+    playTone(baseFreq * 1.25, now, 6);
+    playTone(baseFreq * 1.5, now, 6);
+  }
+
+  function loopMusic() {
+    if (!isMusicPlaying) return;
+
+    playChord(220); // A
+    setTimeout(() => playChord(196), 6000); // G
+    setTimeout(() => playChord(247), 12000); // B
+    setTimeout(() => playChord(220), 18000); // A
+
+    setTimeout(loopMusic, 24000);
+  }
+
+  loopMusic();
+}
+
