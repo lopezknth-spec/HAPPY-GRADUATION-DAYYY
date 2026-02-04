@@ -53,42 +53,51 @@ function startMythicalMusic() {
 
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-  function playTone(freq, startTime, duration) {
+  function playNote(freq, time, duration) {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
 
-    osc.type = "sine"; // soft, dreamy
+    osc.type = "triangle"; // harp / fairy-like
     osc.frequency.value = freq;
 
-    gain.gain.setValueAtTime(0.0001, startTime);
-    gain.gain.exponentialRampToValueAtTime(0.08, startTime + 1);
-    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+    gain.gain.setValueAtTime(0.0001, time);
+    gain.gain.linearRampToValueAtTime(0.05, time + 0.3);
+    gain.gain.linearRampToValueAtTime(0.0001, time + duration);
 
     osc.connect(gain);
     gain.connect(audioCtx.destination);
 
-    osc.start(startTime);
-    osc.stop(startTime + duration);
+    osc.start(time);
+    osc.stop(time + duration);
   }
 
-  function playChord(baseFreq) {
-    const now = audioCtx.currentTime;
-    playTone(baseFreq, now, 6);
-    playTone(baseFreq * 1.25, now, 6);
-    playTone(baseFreq * 1.5, now, 6);
+  function playFairytalePhrase(startTime) {
+    // C MAJOR scale (happy & romantic)
+    const notes = [
+      523.25, // C
+      659.25, // E
+      783.99, // G
+      1046.5, // High C
+      783.99,
+      659.25
+    ];
+
+    notes.forEach((freq, i) => {
+      playNote(freq, startTime + i * 0.6, 1.2);
+    });
   }
 
   function loopMusic() {
     if (!isMusicPlaying) return;
 
-    playChord(220); // A
-    setTimeout(() => playChord(196), 6000); // G
-    setTimeout(() => playChord(247), 12000); // B
-    setTimeout(() => playChord(220), 18000); // A
+    const now = audioCtx.currentTime;
+    playFairytalePhrase(now);
+    playFairytalePhrase(now + 4);
 
-    setTimeout(loopMusic, 24000);
+    setTimeout(loopMusic, 8000);
   }
 
   loopMusic();
 }
+
 
