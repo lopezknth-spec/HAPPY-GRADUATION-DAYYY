@@ -90,3 +90,17 @@ canvas {
   left: 0;
   pointer-events: none;
 }
+
+.pixel-walker {
+  position: fixed;
+  bottom: 20px;
+  left: -50px;
+  font-size: 28px;
+  animation: walkAcross 18s linear infinite;
+  z-index: 10;
+}
+
+@keyframes walkAcross {
+  0% { left: -60px; }
+  100% { left: 110vw; }
+}
