@@ -11,8 +11,6 @@ function openEnvelope() {
   startConfetti();
   
   document.querySelector(".pixel-walker").style.display = "block";
-
-  document.getElementById("tangled-music").src += "&autoplay=1";
 }
 
 function startConfetti() {
