@@ -163,7 +163,7 @@ canvas {
   position: absolute;
   top: 50%;
   font-size: 28px;
-  animation: rosePop 3s ease forwards;
+  animation: rosePop 6s ease forwards;
 }
 
 @keyframes rosePop {
@@ -203,7 +203,7 @@ canvas {
   position: fixed;
   bottom: -20px;
   font-size: 18px;
-  animation: floatHeart 8s linear infinite;
+  animation: floatHeart 10s linear infinite;
 }
 
 @keyframes floatHeart {
