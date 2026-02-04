@@ -92,6 +92,7 @@ canvas {
 }
 
 .pixel-walker {
+  display: none;
   position: fixed;
   bottom: 20px;
   left: -50px;
@@ -100,7 +101,3 @@ canvas {
   z-index: 10;
 }
 
-@keyframes walkAcross {
-  0% { left: -60px; }
-  100% { left: 110vw; }
-}
