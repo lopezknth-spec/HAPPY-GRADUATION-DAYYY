@@ -12,7 +12,7 @@ function openEnvelope() {
   
   document.querySelector(".pixel-walker").style.display = "block";
 
-  startMythicalMusic();
+  startFairytaleMusic();
 }
 
 function startConfetti() {
@@ -44,60 +44,59 @@ window.onresize = () => {
   canvas.height = window.innerHeight;
 };
 
-let audioCtx;
-let isMusicPlaying = false;
+let fairytaleCtx;
+let fairytaleStarted = false;
 
-function startMythicalMusic() {
-  if (isMusicPlaying) return;
-  isMusicPlaying = true;
+function startFairytaleMusic() {
+  if (fairytaleStarted) return;
+  fairytaleStarted = true;
 
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  fairytaleCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-  function playNote(freq, time, duration) {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
+  function fairyNote(freq, start, duration) {
+    const osc = fairytaleCtx.createOscillator();
+    const gain = fairytaleCtx.createGain();
 
-    osc.type = "triangle"; // harp / fairy-like
+    osc.type = "sine"; // PURE, soft, non-scary
     osc.frequency.value = freq;
 
-    gain.gain.setValueAtTime(0.0001, time);
-    gain.gain.linearRampToValueAtTime(0.05, time + 0.3);
-    gain.gain.linearRampToValueAtTime(0.0001, time + duration);
+    gain.gain.setValueAtTime(0.00001, start);
+    gain.gain.linearRampToValueAtTime(0.04, start + 0.4);
+    gain.gain.linearRampToValueAtTime(0.00001, start + duration);
 
     osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    gain.connect(fairytaleCtx.destination);
 
-    osc.start(time);
-    osc.stop(time + duration);
+    osc.start(start);
+    osc.stop(start + duration);
   }
 
-  function playFairytalePhrase(startTime) {
-    // C MAJOR scale (happy & romantic)
-    const notes = [
-      523.25, // C
-      659.25, // E
-      783.99, // G
-      1046.5, // High C
-      783.99,
-      659.25
+  function playFairytaleMelody(time) {
+    // HIGH, HAPPY DISNEY-LIKE NOTES (G MAJOR)
+    const melody = [
+      784.0,  // G
+      880.0,  // A
+      987.8,  // B
+      1174.7, // D
+      1318.5, // E
+      1174.7,
+      987.8,
+      880.0
     ];
 
-    notes.forEach((freq, i) => {
-      playNote(freq, startTime + i * 0.6, 1.2);
+    melody.forEach((freq, i) => {
+      fairyNote(freq, time + i * 0.45, 1.2);
     });
   }
 
-  function loopMusic() {
-    if (!isMusicPlaying) return;
-
-    const now = audioCtx.currentTime;
-    playFairytalePhrase(now);
-    playFairytalePhrase(now + 4);
-
-    setTimeout(loopMusic, 8000);
+  function loopFairytale() {
+    const now = fairytaleCtx.currentTime;
+    playFairytaleMelody(now);
+    setTimeout(loopFairytale, 7000);
   }
 
-  loopMusic();
+  loopFairytale();
 }
+
 
 
