@@ -12,7 +12,7 @@ function openEnvelope() {
   
   document.querySelector(".pixel-walker").style.display = "block";
 
-  startFairytaleMusic();
+  document.getElementById("tangled-music").src += "&autoplay=1";
 }
 
 function startConfetti() {
@@ -43,60 +43,3 @@ window.onresize = () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 };
-
-let fairytaleCtx;
-let fairytaleStarted = false;
-
-function startFairytaleMusic() {
-  if (fairytaleStarted) return;
-  fairytaleStarted = true;
-
-  fairytaleCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-  function fairyNote(freq, start, duration) {
-    const osc = fairytaleCtx.createOscillator();
-    const gain = fairytaleCtx.createGain();
-
-    osc.type = "sine"; // PURE, soft, non-scary
-    osc.frequency.value = freq;
-
-    gain.gain.setValueAtTime(0.00001, start);
-    gain.gain.linearRampToValueAtTime(0.04, start + 0.4);
-    gain.gain.linearRampToValueAtTime(0.00001, start + duration);
-
-    osc.connect(gain);
-    gain.connect(fairytaleCtx.destination);
-
-    osc.start(start);
-    osc.stop(start + duration);
-  }
-
-  function playFairytaleMelody(time) {
-    // HIGH, HAPPY DISNEY-LIKE NOTES (G MAJOR)
-    const melody = [
-      784.0,  // G
-      880.0,  // A
-      987.8,  // B
-      1174.7, // D
-      1318.5, // E
-      1174.7,
-      987.8,
-      880.0
-    ];
-
-    melody.forEach((freq, i) => {
-      fairyNote(freq, time + i * 0.45, 1.2);
-    });
-  }
-
-  function loopFairytale() {
-    const now = fairytaleCtx.currentTime;
-    playFairytaleMelody(now);
-    setTimeout(loopFairytale, 7000);
-  }
-
-  loopFairytale();
-}
-
-
-
