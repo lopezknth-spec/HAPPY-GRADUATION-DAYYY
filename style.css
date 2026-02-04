@@ -7,7 +7,6 @@ body {
   margin: 0;
   background: #fff7f0;
   text-align: center;
-  position: relative;
   overflow-x: hidden;
 }
 
@@ -92,8 +91,7 @@ canvas {
   pointer-events: none;
 }
 
-.pixel-walker:active {
-  transform: scale(1.2);
+.pixel-walker {
   position: fixed;
   bottom: 18px;
   left: -60px;
@@ -132,5 +130,6 @@ canvas {
     bottom: 24px;
   }
 }
+
 
 
