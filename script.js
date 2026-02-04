@@ -6,9 +6,17 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 function openEnvelope() {
-  document.getElementById("envelope-screen").style.display = "none";
-  document.getElementById("content").classList.remove("hidden");
-  startConfetti();
+  document.querySelector(".envelope").classList.add("open");
+
+  setTimeout(() => {
+    document.querySelector(".roses").classList.remove("hidden");
+  }, 600);
+
+  setTimeout(() => {
+    document.getElementById("envelope-screen").style.display = "none";
+    document.getElementById("content").classList.remove("hidden");
+    startHearts();
+  }, 1800);
   
   document.querySelector(".pixel-walker").style.display = "block";
 }
