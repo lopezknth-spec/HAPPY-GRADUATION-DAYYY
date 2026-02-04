@@ -11,17 +11,25 @@
 <!-- ENVELOPE SCREEN -->
 <div id="envelope-screen">
   <div class="envelope" onclick="openEnvelope()">
-  <div class="envelope-top"></div>
 
-  <div class="envelope-body">
-    <p class="tap-text">Tap to open 💌</p>
+    <!-- Envelope back -->
+    <div class="envelope-back"></div>
 
     <!-- Roses INSIDE envelope -->
-    <div class="roses hidden">
-      <img src="roses.png" alt="Rose Bouquet">
+    <div class="envelope-content">
+      <div class="roses hidden">
+        <img src="roses.png" alt="Rose Bouquet">
+      </div>
     </div>
+
+    <!-- Envelope flap -->
+    <div class="envelope-flap"></div>
+
+    <p class="tap-text">Tap to open 💌</p>
+
   </div>
 </div>
+
 
 <!-- CONFETTI -->
 <canvas id="confetti"></canvas>
