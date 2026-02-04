@@ -7,6 +7,7 @@ body {
   margin: 0;
   background: #fff7f0;
   text-align: center;
+  position: relative;
   overflow-x: hidden;
 }
 
@@ -91,13 +92,45 @@ canvas {
   pointer-events: none;
 }
 
-.pixel-walker {
-  display: none;
+.pixel-walker:active {
+  transform: scale(1.2);
   position: fixed;
-  bottom: 20px;
-  left: -50px;
+  bottom: 18px;
+  left: -60px;
   font-size: 28px;
-  animation: walkAcross 18s linear infinite;
   z-index: 10;
+
+  animation:
+    walkAcross 22s linear infinite,
+    walkBounce 0.6s ease-in-out infinite;
 }
+
+/* Horizontal walking */
+@keyframes walkAcross {
+  0% {
+    left: -60px;
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+  51% {
+    transform: scaleX(-1); /* flip direction */
+  }
+  100% {
+    left: 110vw;
+    transform: scaleX(-1);
+  }
+}
+
+/* Vertical bounce (walking feel) */
+@keyframes walkBounce {
+  0%, 100% {
+    bottom: 18px;
+  }
+  50% {
+    bottom: 24px;
+  }
+}
+
 
