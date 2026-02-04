@@ -163,7 +163,7 @@ canvas {
   position: absolute;
   top: 50%;
   font-size: 28px;
-  animation: rosePop 1.2s ease forwards;
+  animation: rosePop 3s ease forwards;
 }
 
 @keyframes rosePop {
