@@ -95,12 +95,14 @@ canvas {
   position: fixed;
   bottom: 18px;
   left: -60px;
-  font-size: 28px;
   z-index: 10;
+  animation: walkAcross 22s linear infinite;
+}
 
-  animation:
-    walkAcross 22s linear infinite,
-    walkBounce 0.6s ease-in-out infinite;
+.walker-body {
+  display: inline-block;
+  font-size: 28px;
+  animation: walkBounce 0.6s ease-in-out infinite;
 }
 
 /* Horizontal walking */
@@ -109,11 +111,11 @@ canvas {
     left: -60px;
     transform: scaleX(1);
   }
-  50% {
+  49% {
     transform: scaleX(1);
   }
-  51% {
-    transform: scaleX(-1); /* flip direction */
+  50% {
+    transform: scaleX(-1);
   }
   100% {
     left: 110vw;
@@ -121,15 +123,16 @@ canvas {
   }
 }
 
-/* Vertical bounce (walking feel) */
+/* Walking bounce */
 @keyframes walkBounce {
   0%, 100% {
-    bottom: 18px;
+    transform: translateY(0);
   }
   50% {
-    bottom: 24px;
+    transform: translateY(-6px);
   }
 }
+
 
 
 
