@@ -101,9 +101,12 @@ body {
 }
 
 .roses img {
-  width: 200px;
-  max-width: 70vw;
-  animation: rosePop 1.8s ease forwards;
+  width: 220px;
+  animation: rosePop 2s ease forwards;
+
+  /* 🌸 Soft magical glow */
+  filter: drop-shadow(0 0 15px rgba(255, 182, 193, 0.6))
+          drop-shadow(0 0 30px rgba(255, 105, 180, 0.35));
 }
 
 @keyframes rosePop {
